@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2022_02_01_160946) do
 
   create_table "contacts", force: :cascade do |t|
-    t.string "contact_name"
+    t.string "name"
     t.date "bith_date"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"name\"", name: "index_contacts_on_name", unique: true
+    t.index ["name"], name: "index_contacts_on_name", unique: true
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
