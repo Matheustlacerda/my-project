@@ -6,5 +6,10 @@ describe User, type: :model do
       user = User.new(name:'Jane', age:30)
       expect(user.valid?).to eq(true)
     end
+
+    it 'must have a user name' do
+      user = User.new(age:30)
+      expect(user.valid?).to eq(false)
+    end
   end
 end
