@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.text :biograph
 
       t.timestamps
+      add_index :users, :name, unique: true
     end
   end
 end
