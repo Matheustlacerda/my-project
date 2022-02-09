@@ -3,33 +3,27 @@
 require 'rails_helper'
 
 describe Contact, type: :model do
-  context 'contact validation test' do
-    it 'contact must have a name' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      expect(contact.valid?).to eq(true)
+  describe 'validations' do
+    let(:contact) { build :contact }
+
+    it { expect(contact).to be_valid }
+
+    context 'when the contact name is empty' do
+      before { contact.name = nil }
+
+      it { expect(contact).to_not be_valid }
     end
 
-    it 'cannot save a contact without a name' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(bith_date: 10 / 10 / 2000, user:)
-      expect(contact.valid?).to eq(false)
+    context 'when contacts have the same user' do
+      before { create :contact, user: contact.user }
+    
+      it { expect(contact).to be_valid }
     end
 
-    it 'cannot create a second contact with a previous name' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      contact_2 = Contact.new(name: 'John', user:)
-      expect(contact_2.valid?).to eq(false)
-    end
-
-    it 'can create a same contact for differentet user' do
-      user = User.new(name: 'Jane', age: 30)
-      user1 = User.new(name: 'John', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      contact_2 = Contact.new(name: 'John', user: user1)
-      expect(contact.valid?).to eq(true)
-      expect(contact_2.valid?).to eq(true)
+    context 'when the contact name is already taken for the user' do
+      before { create :contact, user: contact.user, name: contact.name }
+    
+      it { expect(contact).not_to be_valid }
     end
   end
 end

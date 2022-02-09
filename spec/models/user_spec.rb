@@ -3,21 +3,21 @@
 require 'spec_helper'
 
 describe User, type: :model do
-  context 'user validation test' do
-    it 'user name must exist' do
-      user = build(:user)
-      expect(user).to be_valid
+  describe 'validations' do
+    let(:user) { build :user }
+
+    it { expect(user).to be_valid }
+
+    context 'when the name is empty' do
+      before { user.name = nil }
+
+      it { expect(user).to_not be_valid }
     end
 
-    it 'cannot save without a user name' do
-      user = build(:user, name: nil)
-      expect(user).to_not be_valid
-    end
+    context 'when two users have the same name' do
+      before { create :user, name: user.name }
 
-    it 'cannot have two users with the same name' do
-      create(:user, name: 'John')
-      user2 = build(:user, name: 'John')
-      expect(user2).to_not be_valid
+      it { expect(user).to_not be_valid }
     end
   end
 end

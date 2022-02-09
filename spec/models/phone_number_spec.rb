@@ -3,82 +3,45 @@
 require 'rails_helper'
 
 RSpec.describe PhoneNumber, type: :model do
-  context 'phone number validation test' do
-    it 'phone number must have number, number type and main' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              number_type: 'home',
-                              main: true,
-                              contact:)
-      expect(phone.valid?).to eq(true)
+  describe 'validations' do
+    let(:phone_number) { build :phone_number }
+
+    it { expect(phone_number).to be_valid }
+
+    context 'when the number is empty' do
+      before { phone_number.number = nil }
+
+      it { expect(phone_number).to_not be_valid }
     end
 
-    it 'cannot save phone number without number' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number_type: 'home',
-                              main: true,
-                              contact:)
-      expect(phone.valid?).to eq(false)
+    context 'when the number_type is a not valid type' do
+      before { phone_number.number_type = 'house' }
+
+      it { expect(phone_number).to_not be_valid }
     end
 
-    it 'cannot save phone number without number type' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              main: true,
-                              contact:)
-      expect(phone.valid?).to eq(false)
+    context 'when the number_type is empty' do
+      before { phone_number.number_type = nil }
+
+      it { expect(phone_number).to_not be_valid }
     end
 
-    it 'cannot save phone number without the right number_type' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              number_type: 'job',
-                              main: true,
-                              contact:)
-      expect(phone.valid?).to eq(false)
+    context 'when the main is empty' do
+      before { phone_number.main = nil }
+
+      it { expect(phone_number).to_not be_valid }
     end
 
-    it 'cannot save phone number without main' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              number_type: 'home',
-                              contact:)
-      expect(phone.valid?).to eq(false)
+    context 'when contacts already have the number' do
+      before { create :phone_number, contact: phone_number.contact, number: phone_number.number }
+    
+      it { expect(phone_number).to_not be_valid }
     end
 
-    it 'cannot create two igual numbers for a contact' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              number_type: 'home',
-                              main: true,
-                              contact:)
-      phone2 = PhoneNumber.new(number: '123456789',
-                               number_type: 'work',
-                               main: false,
-                               contact:)
-      expect(phone.valid?).to eq(true)
-      expect(phone2.valid?).to eq(false)
-    end
-
-    it 'cannot create a numbers with two main number' do
-      user = User.new(name: 'Jane', age: 30)
-      contact = Contact.new(name: 'John', user:)
-      phone = PhoneNumber.new(number: '123456789',
-                              number_type: 'home',
-                              main: true,
-                              contact:)
-      phone2 = PhoneNumber.new(number: '1234567890',
-                               number_type: 'work',
-                               main: true,
-                               contact:)
-      expect(phone.valid?).to eq(true)
-      expect(phone2.valid?).to eq(false)
+    context 'when contacts already have a main number' do
+      before { create :phone_number, contact: phone_number.contact, main: true }
+    
+      it { expect(phone_number).to_not be_valid }
     end
   end
 end
