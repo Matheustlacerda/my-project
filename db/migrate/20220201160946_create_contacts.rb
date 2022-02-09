@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateContacts < ActiveRecord::Migration[6.1]
   def change
     create_table :contacts do |t|
@@ -6,7 +8,7 @@ class CreateContacts < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
+      add_index :contacts, %i[name user_id], unique: true
     end
-    add_index :contacts, :name, unique: true
   end
 end
