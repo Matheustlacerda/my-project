@@ -34,14 +34,14 @@ RSpec.describe PhoneNumber, type: :model do
 
     context 'when contacts already have the number' do
       before { create :phone_number, contact: phone_number.contact, number: phone_number.number }
-    
+
       it { expect(phone_number).to_not be_valid }
     end
 
-    context 'when contacts already have a main number' do
-      before { create :phone_number, contact: phone_number.contact, main: true }
-    
-      it { expect(phone_number).to_not be_valid }
+    context 'when contacts already have a previous main number' do
+      before { create :phone_number, contact: phone_number.contact }
+
+      it { expect(phone_number).to be_valid }
     end
   end
 end
