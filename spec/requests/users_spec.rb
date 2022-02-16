@@ -42,4 +42,20 @@ describe "Users", type: :request do
       expect(assigns(:user)).to eq(user)
     end
   end
+
+  describe "GET /edit" do
+    it "returns http success" do
+      user = User.create(name:'Jane')
+      get "/users/1/edit"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /update" do
+    it "returns http success" do
+      user = User.create(name:'Jane')
+      get "/users/1"
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
