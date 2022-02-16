@@ -1,0 +1,12 @@
+:root {
+  /* COLORS */
+  --black: #000000;
+  --green1: rgb(145, 165, 145);
+  --green2: rgb(183, 197, 161);
+  --soft--pink: rgb(216, 209, 209);
+  --green: #04AA6D;
+  --white: white;
+
+    /* FONTS */
+  --main-font: 'Roboto Mono';
+}
