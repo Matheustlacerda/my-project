@@ -16,7 +16,8 @@ describe "Users", type: :request do
 
   describe "GET /show" do
     it "returns http success" do
-      get "/users/:id"
+      user = User.create(name:'Jane')
+      get "/users/1"
       expect(response).to have_http_status(:success)
     end
   end
@@ -28,10 +29,17 @@ describe "Users", type: :request do
     end
   end
 
-  describe "GET /create" do
+  describe "Post /create" do
     it "returns http success" do
-      post "/users/create"
+      user = User.create(name:'Jane')
+      get "/users/1"
       expect(response).to have_http_status(:success)
+    end
+
+    it "returns a user" do
+      user = User.create(name:'Jane')
+      get "/users/1"
+      expect(assigns(:user)).to eq(user)
     end
   end
 end

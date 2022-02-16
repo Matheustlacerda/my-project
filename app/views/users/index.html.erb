@@ -1,4 +1,4 @@
-<header class='header_user'>
+<header class='header'>
   <h1>User Page</h1>
   <h2>At this page you can find: users names with how many contact and phone numbers it user has.</h2>
 </header>
@@ -7,6 +7,7 @@
     <h3>There is no user on the database</h3>
   <% else %>
     <h3><%= "Number of user(s): #{User.count }" %></h3>
+    <h3>To see user info just click on the user name!</h3>
     <table class="users">
     <tr>
       <th>User(s)</th>
