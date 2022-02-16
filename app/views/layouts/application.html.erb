@@ -9,7 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Roboto+Mono:wght@300&family=Roboto+Slab:wght@200&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <body>
+    <header>
+      <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/users/new">Create a new user</a></li>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>

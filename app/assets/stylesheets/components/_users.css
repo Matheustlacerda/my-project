@@ -1,0 +1,19 @@
+.users {
+  border-collapse: collapse;
+  padding: 10px;
+  display: flex;
+}
+
+.users td, .users th {
+  border: 1px solid var(--soft--pink);
+  padding: 10px;
+  text-align: center;
+}
+
+.users th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: var(--green);
+  color: var(--white);
+}
