@@ -3,7 +3,7 @@
   <h2>At this page you can add a new user with name, age and bio.</h2>
 </header>
 <main class='main'>
-<button class='button'><%= link_to 'Back', :back %></button>
+<button class='button'><%= link_to 'Back', :root %></button>
 <%= form_with model: @user do |form| %>
   <div>
     <%= form.label :name %><br>
