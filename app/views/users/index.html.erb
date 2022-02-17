@@ -13,13 +13,15 @@
       <th>Contact(s)</th>
       <th>Phone number(s)</th>
       <th>Function</th>
-      <% @users.each do |user| %>
     </tr>
+    <% @users.each do |user| %>
+      <tr>
         <td><%= user.name %></td>
         <td><p><%= user.contacts.size %></p></td>
         <td><%= user.phone_numbers.size %></td>
         <td><%= link_to 'Show user info', user_path(user) %></td>
-      <% end %>
+      </tr>
+    <% end %>
   <% end %>
     </table>
 </main>
