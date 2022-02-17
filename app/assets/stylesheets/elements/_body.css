@@ -1,0 +1,5 @@
+body {
+  padding: 30;
+  background-color: var(--green1);
+  font-family: var(--main-font);
+}
