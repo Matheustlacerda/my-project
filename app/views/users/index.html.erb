@@ -8,20 +8,22 @@
   <% else %>
     <h3><%= "Number of user(s): #{User.count}" %></h3>
     <table class="users">
-    <tr>
-      <th>User(s)</th>
-      <th>Contact(s)</th>
-      <th>Phone number(s)</th>
-      <th>Function</th>
-    </tr>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><p><%= user.contacts.size %></p></td>
-        <td><%= user.phone_numbers.size %></td>
-        <td><%= link_to 'Show user info', user_path(user) %></td>
-      </tr>
-    <% end %>
+      <thead>
+        <th>User(s)</th>
+        <th>Contact(s)</th>
+        <th>Phone number(s)</th>
+        <th>Function</th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.contacts.size %></td>
+            <td><%= user.phone_numbers.size %></td>
+            <td><%= link_to 'Show user info', user_path(user) %></td>
+           </tr>
+        <% end %>
+      </tbody>
   <% end %>
     </table>
 </main>

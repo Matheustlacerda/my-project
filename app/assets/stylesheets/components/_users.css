@@ -1,7 +1,6 @@
 .users {
   border-collapse: collapse;
   padding: 10px;
-  display: flex;
 }
 
 .users td, .users th {
