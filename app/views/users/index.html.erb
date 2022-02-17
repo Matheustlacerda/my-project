@@ -8,22 +8,24 @@
   <% else %>
     <h3><%= "Number of user(s): #{User.count}" %></h3>
     <table class="users">
-    <tr>
-      <th>User(s)</th>
-      <th>Contact(s)</th>
-      <th>Phone number(s)</th>
-      <th colspan="3">Functions</th>
-    </tr>
-    <% @users.each do |user| %>
-      <tr>
-        <td><p><%= user.name %></a></p></td>
-        <td><p><%= user.contacts.size %></p></td>
-        <td><p><%= user.phone_numbers.size %></p></td>
-        <td><p><%= link_to 'Show user info', user_path(user) %></p></td>
-        <td><p><%= link_to 'Edit user', edit_user_path(user) %></p></td>
-        <td><p><%= link_to 'Delete user', user_path(user), data: { :method => :delete, :confirm => 'Do you really wanna delete user?'} %></p></td>
-      </tr>
-    <% end %>
+      <thead>
+        <th>User(s)</th>
+        <th>Contact(s)</th>
+        <th>Phone number(s)</th>
+        <th colspan="3">Functions</th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.contacts.size %></td>
+            <td><%= user.phone_numbers.size %></td>
+            <td><%= link_to 'Show user info', user_path(user) %></td>
+            <td><%= link_to 'Edit user', edit_user_path(user) %></td>
+            <td><%= link_to 'Delete user', user_path(user), data: { :method => :delete, :confirm => 'Do you really wanna delete user?'} %></td>
+          </tr>
+        <% end %>
+      </tbody>
   <% end %>
     </table>
 </main>
