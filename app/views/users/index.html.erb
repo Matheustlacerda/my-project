@@ -13,11 +13,14 @@
       <th>User(s)</th>
       <th>Contact(s)</th>
       <th>Phone number(s)</th>
+      <th colspan="2">Functions</th>
       <% @users.each do |user| %>
     </tr>
-        <td><p><a href="/users/<%= user.id %>"><%= user.name %></a></p></td>
+        <td><p><%= user.name %></a></p></td>
         <td><p><%= user.contacts.size %></p></td>
         <td><p><%= user.phone_numbers.size %></p></td>
+        <td><p><a href="/users/<%= user.id %>">Show user info</a></p></td>
+        <td><p><a href="/users/<%= user.id %>/edit">Edit user</a></p></td>
       <% end %>
   <% end %>
     </table>
