@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root "users#index"
-  resources :users, :except => [:destroy]
+  resources :users
   #get 'users' => 'users#index'
   #get 'users/new' => 'users#new'
   #post 'users' => 'users#create'

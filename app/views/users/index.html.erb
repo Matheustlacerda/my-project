@@ -7,20 +7,21 @@
     <h3>There is no user on the database</h3>
   <% else %>
     <h3><%= "Number of user(s): #{User.count }" %></h3>
-    <h3>To see user info just click on the user name!</h3>
+    <h3>To see user info just click on show user info!</h3>
     <table class="users">
     <tr>
       <th>User(s)</th>
       <th>Contact(s)</th>
       <th>Phone number(s)</th>
-      <th colspan="2">Functions</th>
+      <th colspan="3">Functions</th>
       <% @users.each do |user| %>
     </tr>
         <td><p><%= user.name %></a></p></td>
         <td><p><%= user.contacts.size %></p></td>
         <td><p><%= user.phone_numbers.size %></p></td>
-        <td><p><a href="/users/<%= user.id %>">Show user info</a></p></td>
-        <td><p><a href="/users/<%= user.id %>/edit">Edit user</a></p></td>
+        <td><p><%= link_to 'Show user info', user_path(user) %></p></td>
+        <td><p><%= link_to 'Edit user', edit_user_path(user) %></p></td>
+        <td><p><%= link_to 'Delete user', user_path(user), data: { :method => :delete, :confirm => 'Do you really wanna delete user?'} %></p></td>
       <% end %>
   <% end %>
     </table>
