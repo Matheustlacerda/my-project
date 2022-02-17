@@ -3,8 +3,8 @@
   <h2>At this page you can find: user names, age and bio.</h2>
 </header>
 <main class='main'>
-<button class='button'><%= link_to 'Back', :root %></button>
-<table class="users">
+  <button class='button'><%= link_to 'Back', :root %></button>
+  <table class="users">
     <tr>
       <th>Name</th>
       <th>Age</th>
@@ -12,10 +12,12 @@
       <th>Contact(s)</th>
       <th>Telephone(s)</th>
     </tr>
-        <td><p><%= @user.name %></a></p></td>
-        <td><p><%= @user.age %></a></p></td>
-        <td><p><%= @user.biograph %></a></p></td>
-        <td><p><%= @user.contacts.size %></a></p></td>
-        <td><p><%= @user.phone_numbers.size %></a></p></td>
-    </table>
+    <tr>
+      <td><p><%= @user.name %></a></p></td>
+      <td><p><%= @user.age %></a></p></td>
+      <td><p><%= @user.biograph %></a></p></td>
+      <td><p><%= @user.contacts.size %></a></p></td>
+      <td><p><%= @user.phone_numbers.size %></a></p></td>
+    </tr>
+  </table>
 </main>
