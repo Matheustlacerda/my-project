@@ -1,23 +1,25 @@
 <header class='header'>
   <h1>User Page</h1>
-  <h2>At this page you can find: users names with how many contact and phone numbers it user has.</h2>
+  <h2>At this page you can find: user(s) name(s) with how many contact and phone numbers it user has.</h2>
 </header>
 <main class='main'>
   <% if @users.empty? %>
     <h3>There is no user on the database</h3>
   <% else %>
-    <h3><%= "Number of user(s): #{User.count }" %></h3>
+    <h3><%= "Number of user(s): #{User.count}" %></h3>
     <h3>To see user info just click on the user name!</h3>
     <table class="users">
     <tr>
       <th>User(s)</th>
       <th>Contact(s)</th>
       <th>Phone number(s)</th>
+      <th>Function</th>
       <% @users.each do |user| %>
     </tr>
-        <td><p><a href="/users/<%= user.id %>"><%= user.name %></a></p></td>
+        <td><%= user.name %></td>
         <td><p><%= user.contacts.size %></p></td>
-        <td><p><%= user.phone_numbers.size %></p></td>
+        <td><%= user.phone_numbers.size %></td>
+        <td><%= link_to 'Show user info', user_path(user) %></td>
       <% end %>
   <% end %>
     </table>
